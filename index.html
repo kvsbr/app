@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "u4ili1o1ls");
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Área de Miembros</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FB7185;
+            --primary-light: #fda4af;
+            --primary-dark: #e11d48;
+            --secondary: #854F94;
+            --success: #10b981;
+            --text: #374151;
+            --text-light: #6b7280;
+            --light: #f9fafb;
+            --white: #ffffff;
+            --border: #e5e7eb;
+            --header-height: 60px;
+            --bottom-nav-height: 70px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.5;
+            overflow-x: hidden;
+            padding-top: var(--header-height);
+            padding-bottom: var(--bottom-nav-height);
+        }
+
+        /* Header */
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .app-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .header-btn:active {
+            transform: scale(0.95);
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Main Content */
+        .app-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 12px 16px;
+            min-height: calc(100vh - var(--header-height) - var(--bottom-nav-height));
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Welcome Card */
+        .welcome-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 18px 20px;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(251, 113, 133, 0.3);
+        }
+
+        .welcome-card h1 {
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+        }
+
+        .welcome-card p {
+            opacity: 0.95;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Progress Card */
+        .progress-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .progress-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .progress-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 10px 8px;
+            background: var(--light);
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--light);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(251,113,133,0.12), rgba(133,79,148,0.12));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .card-title {
+            flex: 1;
+        }
+
+        .card-title h3 {
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .card-title p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Download Card */
+        .download-card {
+            background: white;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            transition: all 0.2s;
+        }
+
+        .download-card:active {
+            transform: scale(0.98);
+        }
+
+        .download-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .download-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .download-info h4 {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .download-info p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .download-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            border: none;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .download-btn:active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Checklist */
+        .checklist-item {
+            background: white;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .checklist-item:active {
+            transform: scale(0.98);
+        }
+
+        .checklist-item.completed {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .checklist-item.completed .checkbox {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .checkbox i {
+            color: white;
+            font-size: 12px;
+            display: none;
+        }
+
+        .checklist-item.completed .checkbox i {
+            display: block;
+        }
+
+        .checklist-text {
+            flex: 1;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .checklist-item.completed .checklist-text {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        /* FAQ Item */
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .faq-question {
+            padding: 12px 14px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .faq-question i {
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 14px 12px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* Comment Card */
+        .comment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .comment-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            overflow: hidden;
+            object-fit: cover;
+        }
+
+        .comment-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .comment-info {
+            flex: 1;
+        }
+
+        .comment-name {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .comment-date {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .comment-stars {
+            display: flex;
+            gap: 3px;
+            margin-top: 4px;
+        }
+
+        .comment-stars i {
+            color: #fbbf24;
+            font-size: 0.85rem;
+        }
+
+        .comment-text {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .comment-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: rgba(251,113,133,0.08);
+            border-radius: 8px;
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .comment-link:hover {
+            background: rgba(251,113,133,0.15);
+        }
+
+        .comment-link i {
+            font-size: 0.9rem;
+        }
+
+        .comment-cta {
+            background: linear-gradient(135deg, rgba(251,113,133,0.1), rgba(133,79,148,0.1));
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            border: 2px dashed rgba(251,113,133,0.3);
+        }
+
+        .comment-cta h3 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .comment-cta p {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .comment-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Support Card */
+        .support-card {
+            background: linear-gradient(135deg, rgba(251,113,133,0.1), rgba(139,92,246,0.1));
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .support-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 16px;
+        }
+
+        .support-card h3 {
+            font-size: 1.2rem;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .support-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        .support-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: white;
+            border-radius: 12px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--bottom-nav-height);
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 8px;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: all 0.2s;
+            border: none;
+            background: none;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item i {
+            font-size: 1.3rem;
+        }
+
+        .nav-item span {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        .nav-item:active {
+            transform: scale(0.95);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            color: var(--text-light);
+            opacity: 0.3;
+            margin-bottom: 16px;
+        }
+
+        .empty-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* Section Header */
+        .section-header {
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 1.25rem;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .section-header p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-new {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .badge-bonus {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--secondary);
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--light);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="app-logo">
+            <i class="fas fa-spa"></i>
+            App: Tú Protocolo + Bonos
+        </div>
+        <div class="header-actions">
+            <button class="header-btn" onclick="showSection('support')" title="Ayuda">
+                <i class="fas fa-question-circle"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-content">
+        <!-- Home Section -->
+        <div class="section active" id="home">
+            <div class="welcome-card">
+                <h1>¡Bienvenida! 👋</h1>
+                <p>Tu compra fue confirmada. Tienes acceso completo a tu área de miembros exclusiva con todos los materiales y bonos.</p>
+            </div>
+
+            <div class="progress-card">
+                <div class="progress-header">
+                    <span class="progress-title">Tu Progreso</span>
+                </div>
+                
+                <div class="progress-stats">
+                    <div class="stat-box">
+                        <span class="stat-number" id="progress-percent">0%</span>
+                        <span class="stat-label">Avance</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number" id="tasks-count">0/10</span>
+                        <span class="stat-label">Tareas</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number" id="day-count">1</span>
+                        <span class="stat-label">Día</span>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-bar" style="width: 0%"></div>
+                </div>
+                <p class="progress-text" id="progress-message">Marca las tareas para empezar</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📥</div>
+                    <div class="card-title">
+                        <h3>Pasos Rápidos</h3>
+                        <p>Comienza aquí</p>
+                    </div>
+                </div>
+                <div style="display: grid; gap: 8px;">
+                    <button class="download-card" onclick="showSection('downloads')" style="cursor: pointer; border: none; text-align: left; width: 100%;">
+                        <div class="download-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="download-info">
+                            <h4>1. Descargar Archivos</h4>
+                            <p>Obtén todos los materiales</p>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color: var(--text-light);"></i>
+                    </button>
+
+                    <button class="download-card" onclick="showSection('progress')" style="cursor: pointer; border: none; text-align: left; width: 100%;">
+                        <div class="download-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="download-info">
+                            <h4>2. Marcar Progreso</h4>
+                            <p>Sigue tu avance</p>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color: var(--text-light);"></i>
+                    </button>
+
+                    <button class="download-card" onclick="showSection('faq')" style="cursor: pointer; border: none; text-align: left; width: 100%;">
+                        <div class="download-icon" style="background: linear-gradient(135deg, var(--secondary), #7C3AED);">
+                            <i class="fas fa-question"></i>
+                        </div>
+                        <div class="download-info">
+                            <h4>3. Ver Preguntas</h4>
+                            <p>Resuelve tus dudas</p>
+                        </div>
+                        <i class="fas fa-chevron-right" style="color: var(--text-light);"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Downloads Section -->
+        <div class="section" id="downloads">
+            <div class="section-header">
+                <h2>Descargas</h2>
+                <p>Todos tus archivos en un solo lugar</p>
+            </div>
+
+            <a href="pdf/El Truco del Sal Rosa.pdf" class="download-card" style="text-decoration: none;">
+                <div class="download-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <div class="download-info">
+                    <h4>Tú Protocolo Sal Rosa <span class="badge badge-new">Principal</span></h4>
+                    <p>Material principal del método</p>
+                </div>
+                <button class="download-btn">
+                    <i class="fas fa-download"></i>
+                </button>
+            </a>
+
+            <!-- Nuevo Principal: Receita Gelatina Bariátrica -->
+            <a href="pdf/Receita Gelatina Bariátrica.pdf" class="download-card" style="text-decoration: none;">
+                <div class="download-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <div class="download-info">
+                    <h4>Tú Protocolo Gelatina<span class="badge badge-new">Principal</span></h4>
+                    <p>Nueva guía principal del método</p>
+                </div>
+                <button class="download-btn">
+                    <i class="fas fa-download"></i>
+                </button>
+            </a>
+
+            <div style="margin-top: 24px;">
+                <h3 style="font-size: 1.1rem; color: var(--text); margin-bottom: 12px;">
+                    <i class="fas fa-gift" style="color: var(--secondary);"></i> Bonos Incluidos
+                </h3>
+
+                <a href="pdf/100 RECETAS SECRETAS.pdf" class="download-card" style="text-decoration: none;">
+                    <div class="download-icon" style="background: linear-gradient(135deg, var(--secondary), #7C3AED);">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="download-info">
+                        <h4>100 Recetas Secretas <span class="badge badge-bonus">Bono</span></h4>
+                        <p>Colección de recetas variadas</p>
+                    </div>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </a>
+
+                <!-- Nuevos Bonos -->
+                <a href="pdf/Receita Gelatina Bariátrica - Guia Rápido.pdf" class="download-card" style="text-decoration: none;">
+                    <div class="download-icon" style="background: linear-gradient(135deg, var(--secondary), #6f3a86);">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="download-info">
+                        <h4>Gelatina Bariátrica: Guia Rápido <span class="badge badge-bonus">Bono</span></h4>
+                        <p>Passo a passo resumido</p>
+                    </div>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </a>
+
+                <a href="pdf/Receitas de Gelatina Funcional.pdf" class="download-card" style="text-decoration: none;">
+                    <div class="download-icon" style="background: linear-gradient(135deg, var(--secondary), #6f3a86);">
+                        <i class="fas fa-cheese"></i>
+                    </div>
+                    <div class="download-info">
+                        <h4>Receitas de Gelatina Funcional <span class="badge badge-bonus">Bono</span></h4>
+                        <p>Variações saborosas e leves</p>
+                    </div>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </a>
+
+                <a href="pdf/Plano de 7 Días con Gelatina.pdf" class="download-card" style="text-decoration: none;">
+                    <div class="download-icon" style="background: linear-gradient(135deg, var(--secondary), #6f3a86);">
+                        <i class="fas fa-calendar-week"></i>
+                    </div>
+                    <div class="download-info">
+                        <h4>Plano de 7 Días con Gelatina <span class="badge badge-bonus">Bono</span></h4>
+                        <p>Organiza tu semana fácilmente</p>
+                    </div>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </a>
+
+                <a href="pdf/7 Recetas Saludables de Almuerzo Sin Gluten.pdf" class="download-card" style="text-decoration: none;">
+                    <div class="download-icon" style="background: linear-gradient(135deg, var(--secondary), #7C3AED);">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="download-info">
+                        <h4>7 Recetas de Almuerzo <span class="badge badge-bonus">Bono</span></h4>
+                        <p>Sin gluten</p>
+                    </div>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </a>
+
+                <a href="pdf/Desayunos sin gluten 7 recetas saludables y deliciosas.pdf" class="download-card" style="text-decoration: none;">
+                    <div class="download-icon" style="background: linear-gradient(135deg, var(--secondary), #7C3AED);">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="download-info">
+                        <h4>Desayunos sin Gluten <span class="badge badge-bonus">Bono</span></h4>
+                        <p>7 recetas saludables</p>
+                    </div>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </a>
+
+                <a href="pdf/500recetassingluten.pdf" class="download-card" style="text-decoration: none;">
+                    <div class="download-icon" style="background: linear-gradient(135deg, var(--secondary), #7C3AED);">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="download-info">
+                        <h4>500 Recetas Sin Gluten <span class="badge badge-bonus">Bono</span></h4>
+                        <p>Colección completa</p>
+                    </div>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </a>
+
+                <a href="pdf/Platos Principales de Navidad.pdf" class="download-card" style="text-decoration: none;">
+                    <div class="download-icon" style="background: linear-gradient(135deg, var(--secondary), #7C3AED);">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="download-info">
+                        <h4>Platos de Navidad <span class="badge badge-bonus">Bono</span></h4>
+                        <p>Ocasiones especiales</p>
+                    </div>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </a>
+
+                <a href="pdf/Postres de Navidad.pdf" class="download-card" style="text-decoration: none;">
+                    <div class="download-icon" style="background: linear-gradient(135deg, var(--secondary), #7C3AED);">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <div class="download-info">
+                        <h4>Postres de Navidad <span class="badge badge-bonus">Bono</span></h4>
+                        <p>Postres especiales</p>
+                    </div>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </a>
+
+                <a href="pdf/Recetas de Cena Sin Gluten.pdf" class="download-card" style="text-decoration: none;">
+                    <div class="download-icon" style="background: linear-gradient(135deg, var(--secondary), #7C3AED);">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="download-info">
+                        <h4>Recetas de Cena <span class="badge badge-bonus">Bono</span></h4>
+                        <p>Sin gluten</p>
+                    </div>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </a>
+
+                <a href="pdf/Recetas Saludables de Merienda Sin Gluten.pdf" class="download-card" style="text-decoration: none;">
+                    <div class="download-icon" style="background: linear-gradient(135deg, var(--secondary), #7C3AED);">
+                        <i class="fas fa-cookie"></i>
+                    </div>
+                    <div class="download-info">
+                        <h4>Meriendas Sin Gluten <span class="badge badge-bonus">Bono</span></h4>
+                        <p>Snacks saludables</p>
+                    </div>
+                    <button class="download-btn">
+                        <i class="fas fa-download"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="section" id="progress">
+            <div class="section-header">
+                <h2>Mi Progreso</h2>
+                <p>Sigue estos pasos en orden. Marca cada uno al completarlo.</p>
+            </div>
+
+            <div class="checklist-item" data-task="download-main">
+                <div class="checkbox"><i class="fas fa-check"></i></div>
+                <span class="checklist-text"><strong>Paso 1:</strong> Descargué el material principal</span>
+            </div>
+
+            <div class="checklist-item" data-task="download-bonus">
+                <div class="checkbox"><i class="fas fa-check"></i></div>
+                <span class="checklist-text"><strong>Paso 2:</strong> Descargué los bonos</span>
+            </div>
+
+            <div class="checklist-item" data-task="read-method">
+                <div class="checkbox"><i class="fas fa-check"></i></div>
+                <span class="checklist-text"><strong>Paso 3:</strong> Leí el método completo</span>
+            </div>
+
+            <div class="checklist-item" data-task="ingredients-list">
+                <div class="checkbox"><i class="fas fa-check"></i></div>
+                <span class="checklist-text"><strong>Paso 4:</strong> Hice mi lista de ingredientes</span>
+            </div>
+
+            <div class="checklist-item" data-task="bought-ingredients">
+                <div class="checkbox"><i class="fas fa-check"></i></div>
+                <span class="checklist-text"><strong>Paso 5:</strong> Compré los ingredientes</span>
+            </div>
+
+            <div class="checklist-item" data-task="first-recipe">
+                <div class="checkbox"><i class="fas fa-check"></i></div>
+                <span class="checklist-text"><strong>Paso 6:</strong> Preparé mi primera receta</span>
+            </div>
+
+            <div class="checklist-item" data-task="took-measures">
+                <div class="checkbox"><i class="fas fa-check"></i></div>
+                <span class="checklist-text"><strong>Paso 7:</strong> Tomé mis medidas iniciales</span>
+            </div>
+
+            <div class="checklist-item" data-task="set-goals">
+                <div class="checkbox"><i class="fas fa-check"></i></div>
+                <span class="checklist-text"><strong>Paso 8:</strong> Establecí mis metas</span>
+            </div>
+
+            <div class="checklist-item" data-task="joined-community">
+                <div class="checkbox"><i class="fas fa-check"></i></div>
+                <span class="checklist-text"><strong>Paso 9:</strong> Revisé todos los materiales de apoyo</span>
+            </div>
+
+            <div class="checklist-item" data-task="started-plan">
+                <div class="checkbox"><i class="fas fa-check"></i></div>
+                <span class="checklist-text"><strong>Paso 10:</strong> ¡Comencé oficialmente el desafío!</span>
+            </div>
+        </div>
+
+        <!-- Community Section -->
+        <div class="section" id="community">
+            <div class="section-header">
+                <h2>Comunidad</h2>
+                <p>Lo que otras mujeres están compartiendo</p>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar"><img src="images/foto1.jpg" alt="María Carmen"></div>
+                    <div class="comment-info">
+                        <div class="comment-name">María Carmen, 47 años</div>
+                        <div class="comment-date">Hace 2 días</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Los materiales están muy bien organizados. Me gustó mucho la variedad de recetas sin gluten. El soporte respondió mis dudas muy rápido. Estoy revisando todo con calma.</p>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar">AR</div>
+                    <div class="comment-info">
+                        <div class="comment-name">Ana Rosa, 52 años</div>
+                        <div class="comment-date">Hace 5 días</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Encontré este video que complementa perfectamente el material sobre alimentación saludable. Explica todo de forma muy clara y sin complicaciones.</p>
+                <a href="https://www.youtube.com/watch?v=ss3C51gzkpQ" target="_blank" class="comment-link">
+                    <i class="fab fa-youtube"></i>
+                    Ver video: Mitos de alimentación saludable
+                </a>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar"><img src="images/foto3.jpg" alt="Lucía Fernández"></div>
+                    <div class="comment-info">
+                        <div class="comment-name">Lucía Fernández, 44 años</div>
+                        <div class="comment-date">Hace 1 semana</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Muy contenta con la compra. Las 500 recetas sin gluten son un tesoro. Todavía estoy explorando todo el contenido pero ya probé varias recetas.</p>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar"><img src="images/foto4.jpg" alt="Patricia Morales"></div>
+                    <div class="comment-info">
+                        <div class="comment-name">Patricia Morales, 49 años</div>
+                        <div class="comment-date">Hace 1 semana</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">El soporte es excelente. Me respondieron en menos de 24 horas. Los bonos de desayunos sin gluten están increíbles. Compartiendo este video de treino que empecé a hacer en casa:</p>
+                <a href="https://www.youtube.com/watch?v=q9b9afJ-GnA" target="_blank" class="comment-link">
+                    <i class="fab fa-youtube"></i>
+                    Ver video: Treino para iniciantes sin equipamiento
+                </a>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar">IS</div>
+                    <div class="comment-info">
+                        <div class="comment-name">Isabel Santos, 55 años</div>
+                        <div class="comment-date">Hace 10 días</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Me encanta poder acceder a todo desde mi celular. Esta área de miembros es muy práctica. Ya descargué todos los materiales y los estoy revisando paso a paso.</p>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar"><img src="images/foto6.jpg" alt="Carmen García"></div>
+                    <div class="comment-info">
+                        <div class="comment-name">Carmen García, 46 años</div>
+                        <div class="comment-date">Hace 2 semanas</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Este video me ayudó mucho a entender por qué algunos hábitos no funcionaban. Muy recomendable para complementar el material:</p>
+                <a href="https://www.youtube.com/watch?v=LSVCFKWxvcA" target="_blank" class="comment-link">
+                    <i class="fab fa-youtube"></i>
+                    Ver video: Por qué "comer de todo" no funciona
+                </a>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar">MJ</div>
+                    <div class="comment-info">
+                        <div class="comment-name">María José, 51 años</div>
+                        <div class="comment-date">Hace 2 semanas</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Las recetas de postres de Navidad son maravillosas. Ya probé dos y quedaron perfectas. El material está muy completo y bien explicado.</p>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar"><img src="images/foto8.jpg" alt="Rosa López"></div>
+                    <div class="comment-info">
+                        <div class="comment-name">Rosa López, 48 años</div>
+                        <div class="comment-date">Hace 3 semanas</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Excelente guía para montar una dieta equilibrada. Encontré este video que tiene 10 dicas prácticas perfectas:</p>
+                <a href="https://www.youtube.com/watch?v=kQgn3ggqO9I" target="_blank" class="comment-link">
+                    <i class="fab fa-youtube"></i>
+                    Ver video: 10 dicas para dieta equilibrada
+                </a>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar">TE</div>
+                    <div class="comment-info">
+                        <div class="comment-name">Teresa Ester, 43 años</div>
+                        <div class="comment-date">Hace 3 semanas</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Me gusta la variedad de contenido. Empecé con los desayunos sin gluten y estoy muy satisfecha. Todo es fácil de seguir y organizado.</p>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar"><img src="images/foto2.jpg" alt="Verónica Pérez"></div>
+                    <div class="comment-info">
+                        <div class="comment-name">Verónica Pérez, 50 años</div>
+                        <div class="comment-date">Hace 4 semanas</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Para las que quieren hacer ejercicio en casa, este video de cardio es perfecto. Ritmo leve y fácil de seguir:</p>
+                <a href="https://www.youtube.com/watch?v=03wjUxDIO5w" target="_blank" class="comment-link">
+                    <i class="fab fa-youtube"></i>
+                    Ver video: Cardio + fuerza para iniciantes
+                </a>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar"><img src="images/foto5.jpg" alt="Gabriela Luna"></div>
+                    <div class="comment-info">
+                        <div class="comment-name">Gabriela Luna, 45 años</div>
+                        <div class="comment-date">Hace 1 mes</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Comencé con yoga usando este video. Es muy tranquilo y perfecto para principiantes. Me ayuda a mantener la calma:</p>
+                <a href="https://www.youtube.com/watch?v=vd1j1nqHhuY" target="_blank" class="comment-link">
+                    <i class="fab fa-youtube"></i>
+                    Ver video: Yoga para iniciantes
+                </a>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar"><img src="images/foto7.jpg" alt="Silvia Castro"></div>
+                    <div class="comment-info">
+                        <div class="comment-name">Silvia Castro, 54 años</div>
+                        <div class="comment-date">Hace 1 mes</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">El material es muy completo. Destaco las 100 recetas secretas, hay opciones para todos los gustos. El soporte me ayudó cuando tuve dudas.</p>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar"><img src="images/foto9.jpg" alt="Marta Mendez"></div>
+                    <div class="comment-info">
+                        <div class="comment-name">Marta Mendez, 42 años</div>
+                        <div class="comment-date">Hace 1 mes</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Probé esta receta de bolo sin gluten y quedó deliciosa. Súper fácil y rápida:</p>
+                <a href="https://www.youtube.com/watch?v=hZ-y16p3vxI" target="_blank" class="comment-link">
+                    <i class="fab fa-youtube"></i>
+                    Ver video: Bolo sin gluten fácil
+                </a>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar"><img src="images/foto10.jpg" alt="Beatriz Estévez"></div>
+                    <div class="comment-info">
+                        <div class="comment-name">Beatriz Estévez, 47 años</div>
+                        <div class="comment-date">Hace 5 semanas</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Me encanta poder descargar todo y tenerlo guardado en mi celular. Reviso las recetas cuando voy al supermercado. Muy práctico.</p>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar">NR</div>
+                    <div class="comment-info">
+                        <div class="comment-name">Norma Ramírez, 53 años</div>
+                        <div class="comment-date">Hace 6 semanas</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Esta torta de maçã sin gluten es perfecta para el café de la tarde. Simple y casera:</p>
+                <a href="https://www.youtube.com/watch?v=alz9GZyq7pk" target="_blank" class="comment-link">
+                    <i class="fab fa-youtube"></i>
+                    Ver video: Torta de maçã sin gluten
+                </a>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar">DR</div>
+                    <div class="comment-info">
+                        <div class="comment-name">Diana Rojas, 41 años</div>
+                        <div class="comment-date">Hace 6 semanas</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Los bonos adicionales superaron mis expectativas. Hay mucho contenido de calidad. Estoy muy satisfecha con mi compra.</p>
+            </div>
+
+            <div class="comment-card">
+                <div class="comment-header">
+                    <div class="comment-avatar"><img src="images/foto11.jpg" alt="Alicia Vega"></div>
+                    <div class="comment-info">
+                        <div class="comment-name">Alicia Vega, 56 años</div>
+                        <div class="comment-date">Hace 2 meses</div>
+                        <div class="comment-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-text">Este brownie sin gluten y sin azúcar refinado es una delicia. Súper recomendado:</p>
+                <a href="https://www.youtube.com/watch?v=03Ym6j5gmYQ" target="_blank" class="comment-link">
+                    <i class="fab fa-youtube"></i>
+                    Ver video: Brownie saludable sin gluten
+                </a>
+            </div>
+
+            <div class="comment-cta">
+                <h3>💬 ¿Quieres compartir tu experiencia?</h3>
+                <p>Nos encantaría saber cómo te está yendo. Envíanos tu comentario, duda o sugerencia.</p>
+                <a href="mailto:mkt.moneyclub@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                    Enviar Email
+                </a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="section" id="faq">
+            <div class="section-header">
+                <h2>Preguntas Frecuentes</h2>
+                <p>Toca cada pregunta para ver la respuesta</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cuándo veré resultados?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Los tiempos varían según cada persona. Algunos notan cambios en los primeros días. Cada cuerpo es único.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Son caros los ingredientes?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        No. Los ingredientes son accesibles y económicos. La mayoría los encuentras en cualquier supermercado.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Necesito hacer ejercicio?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        No es necesario ejercicio intenso. Cualquier actividad física ligera puede ser beneficiosa.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Qué si no descargué algo?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Todos los archivos están disponibles en la pestaña Descargas. También recibirás un email con los enlaces.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cómo accedo a los materiales extras?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Todos los materiales extras y bonos están disponibles en la pestaña "Descargas" de esta área de miembros. También puedes acceder desde la página de inicio.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Puedo pedir reembolso?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Sí, según las políticas de Hotmart. Te recomendamos intentarlo primero y contactarnos si tienes dudas: mkt.moneyclub@gmail.com
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="background: linear-gradient(135deg, rgba(251,113,133,0.08), rgba(139,92,246,0.08)); border: 2px solid rgba(251,113,133,0.2);">
+                <div style="text-align: center; padding: 8px 0;">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">🎁</div>
+                    <h3 style="font-size: 1.1rem; color: var(--primary-dark); margin-bottom: 8px;">¡Acceso Exclusivo!</h3>
+                    <p style="font-size: 0.9rem; color: var(--text); line-height: 1.6;">
+                        También tienes acceso a <strong>materiales extras y contenido exclusivo</strong> dentro de tu área de miembros.
+                    </p>
+                    <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 8px;">
+                        📧 <strong>Revisa tu email</strong> donde recibiste el acceso por Hotmart. Ahí encontrarás información adicional y enlaces directos.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Section -->
+        <div class="section" id="support">
+            <div class="section-header">
+                <h2>Soporte</h2>
+                <p>¿Necesitas ayuda?</p>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Contáctanos</h3>
+                <p>Si tienes alguna duda o problema, estamos aquí para ayudarte.</p>
+                <a href="mailto:mkt.moneyclub@gmail.com" class="support-email">
+                    <i class="fas fa-envelope"></i>
+                    Enviar Email de Soporte
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">💡</div>
+                    <div class="card-title">
+                        <h3>Consejos Útiles</h3>
+                        <p>Toca para expandir cada consejo</p>
+                    </div>
+                </div>
+                <div style="display: grid; gap: 12px;">
+                    <div class="faq-item">
+                        <div class="faq-question" style="padding: 12px; background: var(--light);">
+                            💧 Hidratación
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content" style="background: var(--light); padding-top: 0;">
+                                <p>Beber suficiente agua es fundamental. Se recomienda consumir al menos 2 litros de agua al día. Esto ayuda a mantener tu cuerpo funcionando correctamente, eliminar toxinas y mantener una buena hidratación de la piel.</p>
+                                <p style="margin-top: 8px;">💡 <strong>Tip:</strong> Ten siempre una botella de agua cerca para recordar beber durante el día.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" style="padding: 12px; background: var(--light);">
+                            📝 Registro Personal
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content" style="background: var(--light); padding-top: 0;">
+                                <p>Llevar un registro de tus observaciones te ayuda a mantener el enfoque y ver tu evolución. Puedes anotar cómo te sientes, qué recetas probaste y cualquier cambio que notes.</p>
+                                <p style="margin-top: 8px;">💡 <strong>Tip:</strong> Usa un cuaderno o la app de notas de tu celular para hacerlo simple y accesible.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" style="padding: 12px; background: var(--light);">
+                            🗂️ Organización
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content" style="background: var(--light); padding-top: 0;">
+                                <p>Dedica tiempo específico cada día para revisar los materiales y preparar tus comidas. La organización es clave para mantener la consistencia y no abandonar el proceso.</p>
+                                <p style="margin-top: 8px;">💡 <strong>Tip:</strong> Reserva 15-30 minutos cada mañana o noche para planificar el día siguiente.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" style="padding: 12px; background: var(--light);">
+                            🍽️ Planificación de Comidas
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-content" style="background: var(--light); padding-top: 0;">
+                                <p>Planifica tus comidas con anticipación usando las recetas del material. Esto te ahorrará tiempo, dinero y evitará decisiones de último momento que pueden sabotear tu progreso.</p>
+                                <p style="margin-top: 8px;">💡 <strong>Tip:</strong> Dedica los domingos a planificar y preparar algunas comidas para la semana.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" onclick="showSection('home')" data-section="home">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </button>
+        <button class="nav-item" onclick="showSection('downloads')" data-section="downloads">
+            <i class="fas fa-download"></i>
+            <span>Descargas</span>
+        </button>
+        <button class="nav-item" onclick="showSection('progress')" data-section="progress">
+            <i class="fas fa-tasks"></i>
+            <span>Progreso</span>
+        </button>
+        <button class="nav-item" onclick="showSection('community')" data-section="community">
+            <i class="fas fa-comments"></i>
+            <span>Comunidad</span>
+        </button>
+        <button class="nav-item" onclick="showSection('faq')" data-section="faq">
+            <i class="fas fa-question-circle"></i>
+            <span>FAQ</span>
+        </button>
+        <button class="nav-item" onclick="showSection('support')" data-section="support">
+            <i class="fas fa-headset"></i>
+            <span>Ayuda</span>
+        </button>
+    </nav>
+
+    <script>
+        const STORAGE_KEY = 'salRosaApp';
+
+        // Load Progress
+        function loadProgress() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                return JSON.parse(saved);
+            }
+            return {
+                tasks: {},
+                startDate: new Date().toISOString()
+            };
+        }
+
+        function saveProgress(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        // Update Progress Display
+        function updateProgress() {
+            const progress = loadProgress();
+            const tasks = Object.keys(progress.tasks);
+            const completed = tasks.filter(key => progress.tasks[key]).length;
+            const total = document.querySelectorAll('.checklist-item').length;
+            const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+            // Update all displays
+            document.getElementById('progress-bar').style.width = percentage + '%';
+            document.getElementById('progress-percent').textContent = percentage + '%';
+            document.getElementById('tasks-count').textContent = completed + '/' + total;
+
+            // Update message
+            const messageEl = document.getElementById('progress-message');
+            if (percentage === 0) {
+                messageEl.textContent = 'Marca las tareas para empezar';
+            } else if (percentage < 50) {
+                messageEl.textContent = '¡Buen comienzo! 💪';
+            } else if (percentage < 100) {
+                messageEl.textContent = '¡Casi lo logras! 🎯';
+            } else {
+                messageEl.textContent = '¡Completado! 🎉';
+            }
+
+            // Update day counter
+            const startDate = new Date(progress.startDate);
+            const today = new Date();
+            const daysPassed = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
+            document.getElementById('day-count').textContent = Math.min(daysPassed, 21);
+
+            // Update checklist items
+            document.querySelectorAll('.checklist-item').forEach(item => {
+                const taskId = item.getAttribute('data-task');
+                if (progress.tasks[taskId]) {
+                    item.classList.add('completed');
+                } else {
+                    item.classList.remove('completed');
+                }
+            });
+        }
+
+        // Checklist Handler
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const taskId = this.getAttribute('data-task');
+                const progress = loadProgress();
+                
+                progress.tasks[taskId] = !progress.tasks[taskId];
+                saveProgress(progress);
+                updateProgress();
+            });
+        });
+
+        // Section Navigation
+        function showSection(sectionId) {
+            // Update sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update nav
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector(`[data-section="${sectionId}"]`)?.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const wasActive = faqItem.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                if (!wasActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
